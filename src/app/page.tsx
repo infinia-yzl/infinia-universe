@@ -142,91 +142,96 @@ export default function Home() {
     <main>
       <section className="h-screen flex flex-col md:flex-row justify-center items-center">
         {staticOrbitSection()}
-        <div className="w-full md:w-1/2 p-4 mt-24 md:mt-0 dotted-grid">
-          <h2 className="text-xl mb-2 font-extralight">
-            Hi, I&apos;m
-            {' '}
-            <span className="font-normal">Isaac</span>
-            .
-          </h2>
-          <p className="mb-2 font-extralight">
-            I specialize in
-            {' '}
-            <span className="font-normal">software engineering</span>
-            {' '}
-            and
-            {' '}
-            <span className="font-normal">web development</span>
-            {' '}
-            with recent
-            working experience
-            in the
-            {' '}
-            <span className="font-normal">blockchain</span>
-            {' '}
-            industry.
-          </p>
-          <div className="font-thin border-l-2 border-gray-700 pl-2 mb-2 max-w-screen-md">
-            {TECHNOLOGIES.map((tech, index) => {
-              const fontSize = getTechnologiesFontSize(index);
-              const isDifferentSize = index > 0 && fontSize !== getTechnologiesFontSize(index - 1);
-              return (
-                <React.Fragment key={tech.name}>
-                  {isDifferentSize ? <br /> : null}
-                  {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
-                  <span className={`${fontSize} inline-block mb-2 text-gray-200`}>
-                    {tech.name}
-                  </span>
-                </React.Fragment>
-              );
-            })}
-          </div>
-          <p className="mt-2 mb-2">
-            Most notable, recent work:
-            <button
-              type="button"
-              className="inline-flex items-center rounded-full border-2 border-white bg-black ml-2 py-2 px-4 hover:bg-white hover:text-black transition duration-400 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-white focus:ring-opacity-50"
-            >
-              <a
-                href={MSG_INTRO.highlight.url}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center"
-                aria-label={MSG_INTRO.highlight.title}
+        <div className="w-full md:w-1/2 p-4 pt-20 pl-4 pr-4 md:pt-4 dotted-grid">
+          <div className="ml-6 mr-6">
+            <h2 className="text-xl mb-2 font-extralight">
+              Hi, I&apos;m
+              {' '}
+              <span className="font-normal">Isaac</span>
+              .
+            </h2>
+            <p className="mb-2 font-extralight">
+              I specialize in
+              {' '}
+              <span className="font-normal">software engineering</span>
+              {' '}
+              and
+              {' '}
+              <span className="font-normal">web development</span>
+              {' '}
+              with recent
+              working experience
+              in the
+              {' '}
+              <span className="font-normal">blockchain</span>
+              {' '}
+              industry.
+            </p>
+            <div className="font-thin border-l-2 border-gray-700 pl-2 mb-2 max-w-screen-md">
+              {TECHNOLOGIES.map((tech, index) => {
+                const fontSize = getTechnologiesFontSize(index);
+                const isDifferentSize = index > 0
+                  && fontSize !== getTechnologiesFontSize(index - 1);
+                return (
+                  <React.Fragment key={tech.name}>
+                    {isDifferentSize ? <br /> : null}
+                    {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
+                    <span className={`${fontSize} inline-block mb-2 text-gray-200`}>
+                      {tech.name}
+                    </span>
+                  </React.Fragment>
+                );
+              })}
+            </div>
+            <p className="mt-2 mb-2 justify-self-center align-middle items-center flex">
+              Most notable, recent work:
+              <button
+                type="button"
+                className="inline-flex items-center rounded-full border-2 border-white bg-black ml-2 py-2 px-4 hover:bg-white hover:text-black transition duration-400 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-white focus:ring-opacity-50"
               >
-                <span>{MSG_INTRO.highlight.title}</span>
-                <HiOutlineExternalLink className="ml-2" />
-              </a>
-            </button>
-          </p>
+                <a
+                  href={MSG_INTRO.highlight.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center"
+                  aria-label={MSG_INTRO.highlight.title}
+                >
+                  <span>{MSG_INTRO.highlight.title}</span>
+                  <HiOutlineExternalLink className="ml-2" />
+                </a>
+              </button>
+            </p>
 
-          {/* CTA */}
-          <div className="flex space-x-6 justify-center m-8 md:justify-start md:m-0 md:space-x-4">
-            <button type="button" aria-label="github">
-              <a
-                href="https://github.com/infinia-yzl"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="github"
-              >
-                <SiGithub className="text-4xl" />
-              </a>
-            </button>
-            <button type="button" aria-label="linkedin">
-              <a
-                href="https://www.linkedin.com/in/infinia/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="linkedin"
-              >
-                <SiLinkedin className="text-4xl" />
-              </a>
-            </button>
-            <button type="button" aria-label="email">
-              <a href="mailto:explore@infinia.space" aria-label="email">
-                <MdEmail className="text-4xl" />
-              </a>
-            </button>
+            {/* CTA */}
+            <div
+              className="flex space-x-6 justify-center m-8 md:justify-start md:space-x-4 md:m-0"
+            >
+              <button type="button" aria-label="github">
+                <a
+                  href="https://github.com/infinia-yzl"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="github"
+                >
+                  <SiGithub className="text-4xl" />
+                </a>
+              </button>
+              <button type="button" aria-label="linkedin">
+                <a
+                  href="https://www.linkedin.com/in/infinia/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="linkedin"
+                >
+                  <SiLinkedin className="text-4xl" />
+                </a>
+              </button>
+              <button type="button" aria-label="email">
+                <a href="mailto:explore@infinia.space" aria-label="email">
+                  <MdEmail className="text-4xl" />
+                </a>
+              </button>
+            </div>
           </div>
         </div>
       </section>
