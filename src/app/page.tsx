@@ -176,7 +176,10 @@ export default function Home() {
                   <React.Fragment key={tech.name}>
                     {isDifferentSize ? <br /> : null}
                     {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
-                    <span className={`${fontSize} inline-block mb-2 text-gray-200`}>
+                    <span
+                      className={`${fontSize} inline-block mb-2`}
+                      style={{ color: 'rgb(var(--foreground-rgb))' }}
+                    >
                       {tech.name}
                     </span>
                   </React.Fragment>
@@ -187,7 +190,7 @@ export default function Home() {
               Most notable, recent work:
               <button
                 type="button"
-                className="inline-flex items-center rounded-full border-2 border-white bg-black ml-2 py-2 px-4 hover:bg-white hover:text-black transition duration-400 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-white focus:ring-opacity-50"
+                className="inline-flex items-center rounded-full border-2 ml-2 py-2 px-4 transition duration-400 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-white focus:ring-opacity-50"
               >
                 <a
                   href={MSG_INTRO.highlight.url}
@@ -201,7 +204,6 @@ export default function Home() {
                 </a>
               </button>
             </p>
-
             {/* CTA */}
             <div
               className="flex space-x-6 justify-center m-8 md:justify-start md:space-x-4 md:m-0"

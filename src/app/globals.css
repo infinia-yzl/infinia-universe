@@ -3,16 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+  --foreground-rgb: 255, 255, 255; /* White text */
+  --background-start-rgb: 0, 0, 0; /* Black background */
+  --background-end-rgb: 0, 0, 0; /* Black background */
+  --dot-bg: black;
+  --dot-color: rgba(255, 255, 255, 0.2);
+  --dot-size: 1px;
+  --dot-space: 22px;
+  --button-bg: black;
+  --button-text: white;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 0, 0, 0; /* Black text */
+    --background-start-rgb: 255, 255, 255; /* White background */
+    --background-end-rgb: 255, 255, 255; /* White background */
+    --dot-bg: white;
+    --dot-color: rgba(0, 0, 0, 0.2);
+    --button-bg: white;
+    --button-text: black;
   }
 }
 
@@ -71,13 +81,30 @@ body {
   border-radius: 50%; /* Ensures the orbit is circular */
 }
 
+@media (prefers-color-scheme: light) {
+  .planet {
+    border: 1px solid rgba(0, 0, 0, 0.5); /* Semi-transparent black border */
+  }
+
+  .orbit {
+    border: 1px dashed rgba(0, 0, 0, 0.2); /* Light dashed border */
+  }
+}
+
 .dotted-grid {
-  /* credits: https://codepen.io/edmundojr/pen/xOYJGw */
-  --dot-bg: black;
-  --dot-color: rgba(255, 255, 255, 0.2);
-  --dot-size: 1px;
-  --dot-space: 22px;
   background: linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
   linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
   var(--dot-color);
+}
+
+.button {
+  border: 2px solid var(--button-text);
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+}
+
+.button:hover {
+  background-color: var(--button-text);
+  color: var(--button-bg);
 }
