@@ -131,7 +131,7 @@ export default function Home() {
           height: `${CORE_SIZE_BASE}vw`,
         }}
       >
-        <h1 className="text-white font-thin" style={{ fontSize: `${CORE_SIZE_BASE / 12}vw` }}>
+        <h1 className="font-thin" style={{ fontSize: `${CORE_SIZE_BASE / 12}vw` }}>
           infinia.space
         </h1>
       </div>
