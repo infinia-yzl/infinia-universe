@@ -93,14 +93,14 @@ export default function Home() {
   const [message] = useState(MSG_INTRO);
 
   // Define the base size for the sun or galaxy core
-  const coreSizeBase = 15;
+  const CORE_SIZE_BASE = 15;
 
   // Calculate orbit sizes based on the core size
-  const orbitSizes = [coreSizeBase + 10, coreSizeBase + 25, coreSizeBase + 40];
+  const ORBIT_SIZES = [CORE_SIZE_BASE + 10, CORE_SIZE_BASE + 25, CORE_SIZE_BASE + 40];
 
   // Define pulse animation
-  const pulseAnimationDuration = 10; // Duration in seconds
-  const pulseAnimation = `pulse ${pulseAnimationDuration}s infinite cubic-bezier(0.4, 0, 0.6, 1)`;
+  const PULSE_ANIMATION_DURATION = 10; // Duration in seconds
+  const PULSE_ANIMATION = `pulse ${PULSE_ANIMATION_DURATION}s infinite cubic-bezier(0.4, 0, 0.6, 1)`;
 
   // Function to determine the correct rotation animation based on index
   const getRotationAnimation = (index: number) => (index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite');
@@ -110,8 +110,8 @@ export default function Home() {
       <section className="h-screen flex flex-col md:flex-row justify-center items-center">
         <div className="w-full md:w-1/2 relative flex items-center justify-center">
           {/* Orbits */}
-          {orbitSizes.map((size, index) => {
-            const animationDelay = `${(pulseAnimationDuration / orbitSizes.length) * index * 0.1}s`;
+          {ORBIT_SIZES.map((size, index) => {
+            const animationDelay = `${(PULSE_ANIMATION_DURATION / ORBIT_SIZES.length) * index * 0.1}s`;
             const rotationAnimation = getRotationAnimation(index);
             return (
               // eslint-disable-next-line react/no-array-index-key
@@ -121,7 +121,7 @@ export default function Home() {
                   key={index}
                   className="orbit absolute rounded-full border"
                   style={{
-                    animation: `${pulseAnimation} ${animationDelay}, ${rotationAnimation}`,
+                    animation: `${PULSE_ANIMATION} ${animationDelay}, ${rotationAnimation}`,
                     width: `${size}vw`, // Adjust max value as needed
                     height: `${size}vw`, // Adjust max value as needed
                     maxWidth: `${(index + 1) * 13.5}vw`,
@@ -135,11 +135,11 @@ export default function Home() {
           <div
             className="z-10 rounded-full flex items-center justify-center"
             style={{
-              width: `${coreSizeBase}vw`,
-              height: `${coreSizeBase}vw`,
+              width: `${CORE_SIZE_BASE}vw`,
+              height: `${CORE_SIZE_BASE}vw`,
             }}
           >
-            <h1 className="text-white font-thin" style={{ fontSize: `${coreSizeBase / 12}vw` }}>
+            <h1 className="text-white font-thin" style={{ fontSize: `${CORE_SIZE_BASE / 12}vw` }}>
               infinia.space
             </h1>
           </div>
