@@ -4,8 +4,6 @@ import { MdEmail } from 'react-icons/md';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 
 interface Message {
-  title: string,
-  body: string,
   highlight: {
     title: string,
     url: string,
@@ -13,8 +11,6 @@ interface Message {
 }
 
 const MSG_INTRO: Message = {
-  title: "Hi, I'm Isaac.",
-  body: 'I specialize in software engineering and web development with recent working experience in the blockchain industry.',
   highlight: {
     title: 'Levain',
     url: 'https://developer.levain.tech/',
@@ -106,7 +102,7 @@ export default function Home() {
   const getRotationAnimation = (index: number) => (index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite');
 
   const staticOrbitSection = () => (
-    <div className="w-full md:w-1/2 relative flex items-center justify-center">
+    <div className="w-full md:w-1/2 relative flex items-center justify-center hidden md:flex">
       {/* Orbits */}
       {ORBIT_SIZES.map((size, index) => {
         const animationDelay = `${(PULSE_ANIMATION_DURATION / ORBIT_SIZES.length) * index * 0.1}s`;
@@ -118,8 +114,8 @@ export default function Home() {
             className="orbit absolute rounded-full border"
             style={{
               animation: `${PULSE_ANIMATION} ${animationDelay}, ${rotationAnimation}`,
-              width: `${size}vw`, // Adjust max value as needed
-              height: `${size}vw`, // Adjust max value as needed
+              width: `${size}vw`,
+              height: `${size}vw`,
               maxWidth: `${(index + 1) * 13.5}vw`,
               maxHeight: `${(index + 1) * 13.5}vw`,
             }}
@@ -147,8 +143,29 @@ export default function Home() {
       <section className="h-screen flex flex-col md:flex-row justify-center items-center">
         {staticOrbitSection()}
         <div className="w-full md:w-1/2 p-4 mt-24 md:mt-0 dotted-grid">
-          <h2 className="text-xl mb-2">{MSG_INTRO.title}</h2>
-          <p className="mb-2">{MSG_INTRO.body}</p>
+          <h2 className="text-xl mb-2 font-extralight">
+            Hi, I&apos;m
+            {' '}
+            <span className="font-normal">Isaac</span>
+            .
+          </h2>
+          <p className="mb-2 font-extralight">
+            I specialize in
+            {' '}
+            <span className="font-normal">software engineering</span>
+            {' '}
+            and
+            {' '}
+            <span className="font-normal">web development</span>
+            {' '}
+            with recent
+            working experience
+            in the
+            {' '}
+            <span className="font-normal">blockchain</span>
+            {' '}
+            industry.
+          </p>
           <div className="font-thin border-l-2 border-gray-700 pl-2 mb-2 max-w-screen-md">
             {TECHNOLOGIES.map((tech, index) => {
               const fontSize = getTechnologiesFontSize(index);
@@ -175,6 +192,7 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center"
+                aria-label={MSG_INTRO.highlight.title}
               >
                 <span>{MSG_INTRO.highlight.title}</span>
                 <HiOutlineExternalLink className="ml-2" />
