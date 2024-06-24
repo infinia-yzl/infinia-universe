@@ -146,7 +146,7 @@ export default function Home() {
     <main>
       <section className="h-screen flex flex-col md:flex-row justify-center items-center">
         {staticOrbitSection()}
-        <div className="w-full md:w-1/2 p-4 mt-24 md:mt-0">
+        <div className="w-full md:w-1/2 p-4 mt-24 md:mt-0 dotted-grid">
           <h2 className="text-xl mb-2">{MSG_INTRO.title}</h2>
           <p className="mb-2">{MSG_INTRO.body}</p>
           <div className="font-thin border-l-2 border-gray-700 pl-2 mb-2 max-w-screen-md">

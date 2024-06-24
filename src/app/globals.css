@@ -19,11 +19,10 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  ) rgb(var(--background-start-rgb));
 
   /* Temporarily hide overflow, remove when adding parallax */
   overflow: hidden;
@@ -70,4 +69,14 @@ body {
 .orbit {
   border: 1px dashed rgba(255, 255, 255, 0.2); /* Light dashed border */
   border-radius: 50%; /* Ensures the orbit is circular */
+}
+
+.dotted-grid {
+  --dot-bg: black;
+  --dot-color: rgba(255, 255, 255, 0.2);
+  --dot-size: 1px;
+  --dot-space: 22px;
+  background: linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+  linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+  var(--dot-color);
 }
