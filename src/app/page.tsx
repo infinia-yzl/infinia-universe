@@ -201,7 +201,7 @@ export default function Home() {
           </p>
 
           {/* CTA */}
-          <div className="flex space-x-4">
+          <div className="flex space-x-6 justify-center m-8 md:justify-start md:m-0 md:space-x-4">
             <button type="button" aria-label="github">
               <a
                 href="https://github.com/infinia-yzl"
