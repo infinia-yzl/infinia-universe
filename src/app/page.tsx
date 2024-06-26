@@ -142,7 +142,7 @@ export default function Home() {
     <main>
       <section className="h-screen flex flex-col md:flex-row justify-center items-center">
         {staticOrbitSection()}
-        <div className="w-full md:w-1/2 p-4 pt-20 pl-4 pr-4 md:pt-4 dotted-grid">
+        <div className="md:w-1/2 p-4 pt-20 md:pt-4 dotted-grid max-w-3xl">
           <div className="ml-6 mr-6">
             <h2 className="text-xl mb-2 font-extralight">
               Hi, I&apos;m
