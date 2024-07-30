@@ -108,3 +108,23 @@ body {
   background-color: var(--button-text);
   color: var(--button-bg);
 }
+
+.link-preview-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.link-preview-item {
+  flex: 1;
+  transition: flex-grow 0.1s ease-in-out, opacity 0.3s ease-in-out;
+  min-width: 0; /* This allows flex items to shrink below their content size */
+}
+
+.link-preview-item:hover {
+  flex-grow: 3;
+  opacity: 1;
+}
+
+.link-preview-container:hover .link-preview-item:not(:hover) {
+  opacity: 0.3;
+}

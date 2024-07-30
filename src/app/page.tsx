@@ -95,7 +95,7 @@ function LinkPreview({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block text-sm hover:underline my-4 max-w-3xl"
+      className="block text-sm hover:underline w-full h-full"
     >
       <div className="flex flex-row-reverse overflow-hidden border rounded-lg shadow-sm">
         <div className="relative w-1/4 min-w-[120px] h-[120px]">
@@ -173,17 +173,6 @@ export default function Home() {
 
   return (
     <main>
-      <nav className="fixed top-0 right-0 p-4 z-50">
-        {SECTIONS.map((section, index) => (
-          <a
-            key={section}
-            href={`#section-${index}`}
-            className="mx-2 p-2 bg-opacity-50 bg-gray-800 text-white rounded"
-          >
-            {section}
-          </a>
-        ))}
-      </nav>
       <section className="h-screen flex flex-col md:flex-row justify-center items-center">
         {staticOrbitSection()}
         <div className="md:w-1/2 p-4 pt-20 md:pt-4 dotted-grid max-w-5xl">
@@ -231,18 +220,25 @@ export default function Home() {
               })}
             </div>
 
-            <LinkPreview
-              title="OpenTierBoy"
-              url="https://www.opentierboy.com"
-              imageSrc={logo}
-              description="OpenTierBoy as an open-source project that allows users to create and share tier lists."
-            />
-            <LinkPreview
-              title="Levain"
-              url="https://developer.levain.tech/"
-              imageSrc={logo}
-              description="Levain is an enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
-            />
+            <div className="link-preview-container flex flex-row my-4 h-[200px]">
+              <div className="link-preview-item flex-1">
+                <LinkPreview
+                  title="OpenTierBoy"
+                  url="https://www.opentierboy.com"
+                  imageSrc={logo}
+                  description="OpenTierBoy as an open-source project that allows users to create and share tier lists."
+                />
+              </div>
+              <div className="link-preview-item flex-1">
+                <LinkPreview
+                  title="Levain"
+                  url="https://developer.levain.tech/"
+                  imageSrc={logo}
+                  description="Levain is an enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
+                />
+              </div>
+            </div>
+
             {/* CTA */}
             <div
               className="flex space-x-6 justify-center m-8 md:justify-start md:space-x-4 md:m-0"
