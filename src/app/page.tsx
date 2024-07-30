@@ -2,20 +2,12 @@ import React from 'react';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { MdEmail } from 'react-icons/md';
 import { HiOutlineExternalLink } from 'react-icons/hi';
+import Image from 'next/image';
+import Link from 'next/link';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import logo from '../../public/logo-2.png';
 
-interface Message {
-  highlight: {
-    title: string,
-    url: string,
-  }
-}
-
-const MSG_INTRO: Message = {
-  highlight: {
-    title: 'Levain',
-    url: 'https://developer.levain.tech/',
-  },
-};
+const SECTIONS = ['Home', 'OpenTierBoy', 'Levain'];
 
 const TECHNOLOGIES: { name: string }[] = [
   { name: 'React' },
@@ -87,6 +79,47 @@ const getTechnologiesFontSize = (index: number) => {
 //   }
 // ];
 
+function LinkPreview({
+  title,
+  url,
+  imageSrc,
+  description,
+}: {
+  title: string,
+  url: string,
+  imageSrc: string | StaticImport,
+  description: string,
+}) {
+  return (
+    <Link
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block text-sm hover:underline my-4 max-w-3xl"
+    >
+      <div className="flex flex-row-reverse overflow-hidden border rounded-lg shadow-sm">
+        <div className="relative w-1/4 min-w-[120px] h-[120px]">
+          <Image
+            src={imageSrc}
+            alt={`${title} Preview`}
+            fill
+            style={{ objectFit: 'cover' }}
+            unoptimized
+          />
+        </div>
+        <div className="flex-1 p-4">
+          <h3 className="text-lg font-semibold line-clamp-2 pb-2">{title}</h3>
+          <p className="text-sm line-clamp-2">{description}</p>
+          <div className="flex flex-row items-center space-x-1 mt-2">
+            <span>{new URL(url).hostname}</span>
+            <HiOutlineExternalLink />
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export default function Home() {
   // Define the base size for the sun or galaxy core
   const CORE_SIZE_BASE = 15;
@@ -102,7 +135,7 @@ export default function Home() {
   const getRotationAnimation = (index: number) => (index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite');
 
   const staticOrbitSection = () => (
-    <div className="w-full md:w-1/2 relative flex items-center justify-center hidden md:flex">
+    <div className="w-full md:w-1/2 relative items-center justify-center hidden md:flex">
       {/* Orbits */}
       {ORBIT_SIZES.map((size, index) => {
         const animationDelay = `${(PULSE_ANIMATION_DURATION / ORBIT_SIZES.length) * index * 0.1}s`;
@@ -140,6 +173,17 @@ export default function Home() {
 
   return (
     <main>
+      <nav className="fixed top-0 right-0 p-4 z-50">
+        {SECTIONS.map((section, index) => (
+          <a
+            key={section}
+            href={`#section-${index}`}
+            className="mx-2 p-2 bg-opacity-50 bg-gray-800 text-white rounded"
+          >
+            {section}
+          </a>
+        ))}
+      </nav>
       <section className="h-screen flex flex-col md:flex-row justify-center items-center">
         {staticOrbitSection()}
         <div className="md:w-1/2 p-4 pt-20 md:pt-4 dotted-grid max-w-5xl">
@@ -186,24 +230,19 @@ export default function Home() {
                 );
               })}
             </div>
-            <p className="mt-2 mb-2 justify-self-center align-middle items-center flex">
-              Most notable, recent work:
-              <button
-                type="button"
-                className="inline-flex items-center rounded-full border-2 ml-2 py-2 px-4 transition duration-400 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-white focus:ring-opacity-50"
-              >
-                <a
-                  href={MSG_INTRO.highlight.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center"
-                  aria-label={MSG_INTRO.highlight.title}
-                >
-                  <span>{MSG_INTRO.highlight.title}</span>
-                  <HiOutlineExternalLink className="ml-2" />
-                </a>
-              </button>
-            </p>
+
+            <LinkPreview
+              title="OpenTierBoy"
+              url="https://www.opentierboy.com"
+              imageSrc={logo}
+              description="OpenTierBoy as an open-source project that allows users to create and share tier lists."
+            />
+            <LinkPreview
+              title="Levain"
+              url="https://developer.levain.tech/"
+              imageSrc={logo}
+              description="Levain is an enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
+            />
             {/* CTA */}
             <div
               className="flex space-x-6 justify-center m-8 md:justify-start md:space-x-4 md:m-0"
