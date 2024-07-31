@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import CustomCursor from '@/app/CustomCursor';
+import CustomCursor from '@/components/CustomCursor';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,8 +15,13 @@ export default function RootLayout({ children }: {
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-      <CustomCursor />
+      <body className={inter.className}>
+        <noscript>
+          Enable JavaScript to see the custom cursor.
+        </noscript>
+        {children}
+        <CustomCursor />
+      </body>
     </html>
   );
 }

@@ -2,12 +2,7 @@ import React from 'react';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { MdEmail } from 'react-icons/md';
 import { HiOutlineExternalLink } from 'react-icons/hi';
-import Image from 'next/image';
 import Link from 'next/link';
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-import logo from '../../public/logo-2.png';
-
-const SECTIONS = ['Home', 'OpenTierBoy', 'Levain'];
 
 const TECHNOLOGIES: { name: string }[] = [
   { name: 'React' },
@@ -46,8 +41,8 @@ const TECHNOLOGIES: { name: string }[] = [
 
 // Function to calculate font size based on index
 const getTechnologiesFontSize = (index: number) => {
-  if (index < 3) return 'text-lg'; // Top 3 technologies
-  if (index < 7) return 'text-base';
+  if (index < 3) return 'text-xs'; // Top 3 technologies
+  if (index < 7) return 'text-xs';
   return 'text-xs'; // All remaining technologies
 };
 
@@ -82,12 +77,10 @@ const getTechnologiesFontSize = (index: number) => {
 function LinkPreview({
   title,
   url,
-  imageSrc,
   description,
 }: {
   title: string,
   url: string,
-  imageSrc: string | StaticImport,
   description: string,
 }) {
   return (
@@ -95,25 +88,20 @@ function LinkPreview({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block text-sm hover:underline w-full h-full"
+      className="block text-sm hover:underline w-full h-full max-w-md"
     >
-      <div className="flex flex-row-reverse overflow-hidden border rounded-lg shadow-sm">
-        <div className="relative w-1/4 min-w-[120px] h-[120px]">
-          <Image
-            src={imageSrc}
-            alt={`${title} Preview`}
-            fill
-            style={{ objectFit: 'cover' }}
-            unoptimized
-          />
+      <div className="link-preview-content h-full flex flex-col justify-between p-4">
+        <div>
+          <h3 className="text-lg font-semibold line-clamp-2 pb-1">{title}</h3>
+          <p
+            className="text-sm line-clamp-5 pt-1"
+          >
+            {description}
+          </p>
         </div>
-        <div className="flex-1 p-4">
-          <h3 className="text-lg font-semibold line-clamp-2 pb-2">{title}</h3>
-          <p className="text-sm line-clamp-2">{description}</p>
-          <div className="flex flex-row items-center space-x-1 mt-2">
-            <span>{new URL(url).hostname}</span>
-            <HiOutlineExternalLink />
-          </div>
+        <div className="flex flex-row items-center space-x-1 mt-2">
+          <span>{new URL(url).hostname}</span>
+          <HiOutlineExternalLink />
         </div>
       </div>
     </Link>
@@ -135,7 +123,7 @@ export default function Home() {
   const getRotationAnimation = (index: number) => (index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite');
 
   const staticOrbitSection = () => (
-    <div className="w-full md:w-1/2 relative items-center justify-center hidden md:flex">
+    <div className="hidden md:flex md:w-1/2 relative items-center justify-center">
       {/* Orbits */}
       {ORBIT_SIZES.map((size, index) => {
         const animationDelay = `${(PULSE_ANIMATION_DURATION / ORBIT_SIZES.length) * index * 0.1}s`;
@@ -175,7 +163,7 @@ export default function Home() {
     <main>
       <section className="h-screen flex flex-col md:flex-row justify-center items-center">
         {staticOrbitSection()}
-        <div className="md:w-1/2 p-4 pt-20 md:pt-4 dotted-grid max-w-5xl">
+        <div className="md:w-3/4 xl:w-1/2 p-4 pt-20 md:pt-16 dotted-grid max-w-5xl">
           <div className="ml-6 mr-6">
             <h2 className="text-xl mb-2 font-extralight">
               Hi, I&apos;m
@@ -183,65 +171,56 @@ export default function Home() {
               <span className="font-normal">Isaac</span>
               .
             </h2>
-            <p className="mb-2 font-extralight">
-              I specialize in
-              {' '}
-              <span className="font-normal">software engineering</span>
-              {' '}
-              and
-              {' '}
-              <span className="font-normal">web development</span>
-              {' '}
-              with recent
-              working experience
-              in the
-              {' '}
-              <span className="font-normal">blockchain</span>
-              {' '}
-              industry.
-            </p>
-            <div className="font-thin border-l-2 border-gray-700 pl-2 mb-2 max-w-screen-md">
-              {TECHNOLOGIES.map((tech, index) => {
-                const fontSize = getTechnologiesFontSize(index);
-                const isDifferentSize = index > 0
-                  && fontSize !== getTechnologiesFontSize(index - 1);
-                return (
-                  <React.Fragment key={tech.name}>
-                    {isDifferentSize ? <br /> : null}
-                    {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
-                    <span
-                      className={`${fontSize} inline-block mb-2`}
-                      style={{ color: 'rgb(var(--foreground-rgb))' }}
-                    >
-                      {tech.name}
-                    </span>
-                  </React.Fragment>
-                );
-              })}
-            </div>
-
-            <div className="link-preview-container flex flex-row my-4 h-[200px]">
+            <span className="font-extralight space-y-1.5">
+              <p>
+                I specialize in
+                {' '}
+                <span className="font-normal">software engineering</span>
+                {' '}
+                and
+                {' '}
+                <span className="font-normal">web development</span>
+                {' '}
+                with recent
+                working experience
+                in the
+                {' '}
+                <span className="font-normal">blockchain</span>
+                {' '}
+                industry.
+              </p>
+              <p>
+                I seek to build
+                {' '}
+                <span className="font-normal">
+                  meaningful
+                </span>
+                {' '}
+                products and experiences.
+              </p>
+            </span>
+            <div
+              className="flex flex-col lg:flex-row will-change-auto link-preview-container my-4"
+            >
               <div className="link-preview-item flex-1">
                 <LinkPreview
-                  title="OpenTierBoy"
+                  title="OpenTierBoy (Founder)"
                   url="https://www.opentierboy.com"
-                  imageSrc={logo}
-                  description="OpenTierBoy as an open-source project that allows users to create and share tier lists."
+                  description="An open-source, non-commercial project that allows users to easily create and share tier lists with a focus on privacy and simplicity."
                 />
               </div>
               <div className="link-preview-item flex-1">
                 <LinkPreview
-                  title="Levain"
+                  title="Levain (Former Lead SWE)"
                   url="https://developer.levain.tech/"
-                  imageSrc={logo}
-                  description="Levain is an enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
+                  description="An enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
                 />
               </div>
             </div>
 
             {/* CTA */}
             <div
-              className="flex space-x-6 justify-center m-8 md:justify-start md:space-x-4 md:m-0"
+              className="flex space-x-6 justify-center m-16 md:justify-start md:space-x-4 md:m-0 md:mt-8"
             >
               <button type="button" aria-label="github">
                 <a
@@ -250,7 +229,7 @@ export default function Home() {
                   rel="noreferrer"
                   aria-label="github"
                 >
-                  <SiGithub className="text-4xl" />
+                  <SiGithub className="text-3xl" />
                 </a>
               </button>
               <button type="button" aria-label="linkedin">
@@ -260,14 +239,35 @@ export default function Home() {
                   rel="noreferrer"
                   aria-label="linkedin"
                 >
-                  <SiLinkedin className="text-4xl" />
+                  <SiLinkedin className="text-3xl" />
                 </a>
               </button>
               <button type="button" aria-label="email">
-                <a href="mailto:explore@infinia.space" aria-label="email">
-                  <MdEmail className="text-4xl" />
+                <a href="mailto:dev@infinia.space" aria-label="email">
+                  <MdEmail className="text-3xl" />
                 </a>
               </button>
+            </div>
+            <div
+              className="font-thin mt-12 pb-8 max-w-screen-md text-center md:text-start"
+            >
+              {TECHNOLOGIES.map((tech, index) => {
+                const fontSize = getTechnologiesFontSize(index);
+                const isDifferentSize = index > 0
+                  && fontSize !== getTechnologiesFontSize(index - 1);
+                return (
+                  <React.Fragment key={tech.name}>
+                    {isDifferentSize ? <br /> : null}
+                    {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
+                    <span
+                      className={`${fontSize} inline-block `}
+                      style={{ color: 'rgb(var(--foreground-rgb))' }}
+                    >
+                      {tech.name}
+                    </span>
+                  </React.Fragment>
+                );
+              })}
             </div>
           </div>
         </div>

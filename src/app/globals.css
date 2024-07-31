@@ -91,6 +91,33 @@ body {
   }
 }
 
+/* Custom cursor styles */
+.cursor {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.cursor::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .dotted-grid {
   background: linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
   linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
@@ -110,21 +137,28 @@ body {
 }
 
 .link-preview-container {
-  display: flex;
   overflow: hidden;
+  height: 100%;
 }
 
 .link-preview-item {
   flex: 1;
   transition: flex-grow 0.1s ease-in-out, opacity 0.3s ease-in-out;
-  min-width: 0; /* This allows flex items to shrink below their content size */
+  display: flex;
+  flex-direction: column;
 }
 
 .link-preview-item:hover {
-  flex-grow: 3;
   opacity: 1;
 }
 
 .link-preview-container:hover .link-preview-item:not(:hover) {
   opacity: 0.3;
+}
+
+.link-preview-content {
+  flex: 1; /* Make the content take up all available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute content evenly */
 }
