@@ -7,9 +7,10 @@ import Link from 'next/link';
 const TECHNOLOGIES: { name: string }[] = [
   { name: 'React' },
   { name: 'NextJS' },
-  { name: 'NestJS' },
+  { name: 'NodeJS' },
   { name: 'Typescript' },
   { name: 'Javascript' },
+  { name: 'Docker' },
   { name: 'Expo (React Native)' },
   { name: 'Supabase' },
   { name: 'REST' },
@@ -24,12 +25,13 @@ const TECHNOLOGIES: { name: string }[] = [
   { name: 'Sequelize' },
   { name: 'KnexJS' },
   { name: 'Redis' },
-  { name: 'NodeJS' },
+  { name: 'NestJS' },
   { name: 'BunJS' },
   { name: 'Vite' },
   { name: 'HTML' },
   { name: 'Material UI' },
   { name: 'Tailwind CSS' },
+  { name: 'Shadcn UI' },
   { name: 'Blockchain' },
   { name: 'Web 3' },
   { name: 'UTXO' },
@@ -46,34 +48,6 @@ const getTechnologiesFontSize = (index: number) => {
   return 'text-xs'; // All remaining technologies
 };
 
-// interface Experience {
-//   title: string,
-//   company: string,
-//   description: string,
-//   link?: string,
-// }
-//
-// const EXPERIENCES: Experience[] = [
-//   {
-//     title: 'Lead Software Engineer',
-//     company: 'Levain, Cake Group',
-//     description: 'Lorem ipsum dolor sit amet..',
-//     link: 'https://developer.levain.tech',
-//   },
-//   {
-//     title: 'Software Engineer',
-//     company: 'Bake, Cake Group',
-//     description: 'Lorem ipsum dolor sit amet..',
-//     link: 'https://bake.io',
-//   },
-//   {
-//     title: 'Software Engineer',
-//     company: 'Zynesis Pte Ltd',
-//     description: 'Lorem ipsum dolor sit amet..',
-//     link: 'https://zynesis.com/',
-//   }
-// ];
-
 function LinkPreview({
   title,
   url,
@@ -88,14 +62,24 @@ function LinkPreview({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block text-sm hover:underline w-full h-full max-w-md"
+      className="block text-sm w-full h-full max-w-md group"
     >
-      <div className="link-preview-content h-full flex flex-col justify-between p-4">
+      <div
+        className="
+          link-preview-content h-full flex flex-col justify-between p-4
+          transition-colors duration-500 ease-in-out
+          group-hover:bg-[rgb(var(--foreground-rgb))]
+          group-hover:text-[rgb(var(--background-start-rgb))]
+          rounded
+        "
+      >
         <div>
-          <h3 className="text-lg font-semibold line-clamp-2 pb-1">{title}</h3>
-          <p
-            className="text-sm line-clamp-5 pt-1"
+          <h3
+            className="text-lg font-semibold line-clamp-2 pb-1 group-hover:underline underline-offset-2"
           >
+            {title}
+          </h3>
+          <p className="text-sm line-clamp-5 pt-1">
             {description}
           </p>
         </div>
@@ -161,7 +145,7 @@ export default function Home() {
 
   return (
     <main>
-      <section className="h-screen flex flex-col md:flex-row justify-center items-center">
+      <div className="h-screen flex flex-col md:flex-row justify-center items-center">
         {staticOrbitSection()}
         <div className="md:w-3/4 xl:w-1/2 p-4 pt-20 md:pt-16 dotted-grid max-w-5xl">
           <div className="ml-6 mr-6">
@@ -217,39 +201,42 @@ export default function Home() {
                 />
               </div>
             </div>
-
-            {/* CTA */}
-            <div
-              className="flex space-x-6 justify-center m-16 md:justify-start md:space-x-4 md:m-0 md:mt-8"
-            >
-              <button type="button" aria-label="github">
-                <a
-                  href="https://github.com/infinia-yzl"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="github"
-                >
-                  <SiGithub className="text-3xl" />
-                </a>
-              </button>
-              <button type="button" aria-label="linkedin">
-                <a
-                  href="https://www.linkedin.com/in/infinia/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="linkedin"
-                >
-                  <SiLinkedin className="text-3xl" />
-                </a>
-              </button>
-              <button type="button" aria-label="email">
-                <a href="mailto:dev@infinia.space" aria-label="email">
-                  <MdEmail className="text-3xl" />
-                </a>
-              </button>
+            <div className="mt-4 text-center md:text-start">
+              <p className="font-extralight ">
+                Pleased to meet you.
+              </p>
+              <div
+                className="flex space-x-6 mt-4 justify-center md:justify-start md:space-x-4 md:m-0 md:mt-4"
+              >
+                <button type="button" aria-label="github">
+                  <a
+                    href="https://github.com/infinia-yzl"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="github"
+                  >
+                    <SiGithub className="text-3xl" />
+                  </a>
+                </button>
+                <button type="button" aria-label="linkedin">
+                  <a
+                    href="https://www.linkedin.com/in/infinia/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="linkedin"
+                  >
+                    <SiLinkedin className="text-3xl" />
+                  </a>
+                </button>
+                <button type="button" aria-label="email">
+                  <a href="mailto:dev@infinia.space" aria-label="email">
+                    <MdEmail className="text-3xl" />
+                  </a>
+                </button>
+              </div>
             </div>
             <div
-              className="font-thin mt-12 pb-8 max-w-screen-md text-center md:text-start"
+              className="font-thin mt-8 pb-8 max-w-screen-md text-center md:text-start"
             >
               {TECHNOLOGIES.map((tech, index) => {
                 const fontSize = getTechnologiesFontSize(index);
@@ -271,7 +258,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

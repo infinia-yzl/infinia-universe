@@ -103,13 +103,13 @@ body {
   mix-blend-mode: difference;
   background-color: white;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
 }
 
 .cursor::after {
   content: '';
-  width: 4px;
-  height: 4px;
+  width: 8px;
+  height: 8px;
   background-color: white;
   border-radius: 50%;
   position: absolute;
@@ -143,7 +143,7 @@ body {
 
 .link-preview-item {
   flex: 1;
-  transition: flex-grow 0.1s ease-in-out, opacity 0.3s ease-in-out;
+  transition: flex-grow 0.1s ease-in-out, opacity 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
 }
