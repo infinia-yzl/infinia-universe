@@ -4,41 +4,151 @@ import { MdEmail } from 'react-icons/md';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import Link from 'next/link';
 
-const TECHNOLOGIES: { name: string }[] = [
-  { name: 'React' },
-  { name: 'NextJS' },
-  { name: 'NodeJS' },
-  { name: 'Typescript' },
-  { name: 'Javascript' },
-  { name: 'Docker' },
-  { name: 'Expo (React Native)' },
-  { name: 'Supabase' },
-  { name: 'REST' },
-  { name: 'GraphQL' },
-  { name: 'Jest' },
-  { name: 'Mocha' },
-  { name: 'Cypress' },
-  { name: 'Playwright' },
-  { name: 'SQL' },
-  { name: 'PostgreSQL' },
-  { name: 'TypeORM' },
-  { name: 'Sequelize' },
-  { name: 'KnexJS' },
-  { name: 'Redis' },
-  { name: 'NestJS' },
-  { name: 'BunJS' },
-  { name: 'Vite' },
-  { name: 'HTML' },
-  { name: 'Material UI' },
-  { name: 'Tailwind CSS' },
-  { name: 'Shadcn UI' },
-  { name: 'Blockchain' },
-  { name: 'Web 3' },
-  { name: 'UTXO' },
-  { name: 'EVM' },
-  { name: 'SVM' },
-  { name: 'TVM' },
-  { name: 'Unreal Engine' },
+const TECHNOLOGIES: { name: string; projects: string[] }[] = [
+  {
+    name: 'React',
+    projects: ['OpenTierBoy', 'Levain'],
+  },
+  {
+    name: 'NextJS',
+    projects: ['OpenTierBoy', 'Levain'],
+  },
+  {
+    name: 'NodeJS',
+    projects: ['OpenTierBoy', 'Levain'],
+  },
+  {
+    name: 'Typescript',
+    projects: ['OpenTierBoy', 'Levain'],
+  },
+  {
+    name: 'Javascript',
+    projects: ['OpenTierBoy', 'Levain'],
+  },
+  {
+    name: 'Docker',
+    projects: ['Levain'],
+  },
+  {
+    name: 'Open-Source',
+    projects: ['OpenTierBoy'],
+  },
+  {
+    name: 'Enterprise',
+    projects: ['Levain'],
+  },
+  {
+    name: 'Expo (React Native)',
+    projects: [],
+  },
+  {
+    name: 'Supabase',
+    projects: [],
+  },
+  {
+    name: 'REST',
+    projects: ['Levain'],
+  },
+  {
+    name: 'GraphQL',
+    projects: ['Levain'],
+  },
+  {
+    name: 'Jest',
+    projects: ['OpenTierBoy', 'Levain'],
+  },
+  {
+    name: 'Mocha',
+    projects: [],
+  },
+  {
+    name: 'Cypress',
+    projects: ['Levain'],
+  },
+  {
+    name: 'Playwright',
+    projects: ['Levain'],
+  },
+  {
+    name: 'SQL',
+    projects: ['Levain'],
+  },
+  {
+    name: 'PostgreSQL',
+    projects: ['Levain'],
+  },
+  {
+    name: 'TypeORM',
+    projects: ['Levain'],
+  },
+  {
+    name: 'Sequelize',
+    projects: ['Levain'],
+  },
+  {
+    name: 'KnexJS',
+    projects: [],
+  },
+  {
+    name: 'Redis',
+    projects: [],
+  },
+  {
+    name: 'NestJS',
+    projects: ['Levain'],
+  },
+  {
+    name: 'BunJS',
+    projects: [],
+  },
+  {
+    name: 'Vite',
+    projects: [],
+  },
+  {
+    name: 'HTML',
+    projects: ['OpenTierBoy', 'Levain'],
+  },
+  {
+    name: 'Material UI',
+    projects: [],
+  },
+  {
+    name: 'Tailwind CSS',
+    projects: ['OpenTierBoy', 'Levain'],
+  },
+  {
+    name: 'Shadcn UI',
+    projects: ['OpenTierBoy'],
+  },
+  {
+    name: 'Blockchain',
+    projects: ['Levain'],
+  },
+  {
+    name: 'Web 3',
+    projects: ['Levain'],
+  },
+  {
+    name: 'UTXO',
+    projects: ['Levain'],
+  },
+  {
+    name: 'EVM',
+    projects: ['Levain'],
+  },
+  {
+    name: 'SVM',
+    projects: ['Levain'],
+  },
+  {
+    name: 'TVM',
+    projects: ['Levain'],
+  },
+  {
+    name: 'Unreal Engine',
+    projects: [],
+  },
 ];
 
 // Function to calculate font size based on index
@@ -52,17 +162,19 @@ function LinkPreview({
   title,
   url,
   description,
+  projectId,
 }: {
   title: string,
   url: string,
   description: string,
+  projectId: string,
 }) {
   return (
     <Link
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block text-sm w-full h-full max-w-lg xs:max-w-full group"
+      className={`block text-sm w-full h-full max-w-lg xs:max-w-full group project-${projectId}`}
     >
       <div
         className="
@@ -198,6 +310,7 @@ export default function Home() {
               title="OpenTierBoy (Founder)"
               url="https://www.opentierboy.com"
               description="An open-source, non-commercial project that allows users to easily create and share tier lists with a focus on privacy and simplicity."
+              projectId="OpenTierBoy"
             />
           </article>
           <article id="Levain" className="link-preview-item flex-1">
@@ -205,6 +318,7 @@ export default function Home() {
               title="Levain (Former Lead SWE)"
               url="https://developer.levain.tech/"
               description="An enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
+              projectId="Levain"
             />
           </article>
         </section>
@@ -243,7 +357,7 @@ export default function Home() {
           </div>
         </section>
         <footer
-          className="font-thin mt-8 pb-8 max-w-screen-md text-center md:text-start"
+          className="relative font-thin pt-2 mt-8 pb-8 max-w-screen-md text-center md:text-start"
         >
           {TECHNOLOGIES.map((tech, index) => {
             const fontSize = getTechnologiesFontSize(index);
@@ -254,8 +368,8 @@ export default function Home() {
                 {isDifferentSize ? <br /> : null}
                 {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
                 <span
-                  className={`${fontSize} inline-block `}
-                  style={{ color: 'rgb(var(--foreground-rgb))' }}
+                  className={`${fontSize} inline-block transition-opacity duration-300 ease-in-out technology ${tech.projects.map((project) => `project-${project}`)
+                    .join(' ')}`}
                 >
                   {tech.name}
                 </span>

@@ -159,3 +159,30 @@ body {
   flex-direction: column;
   justify-content: space-between; /* Distribute content evenly */
 }
+
+.technology {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0.5;
+}
+
+/* Highlight technologies when hovering over projects */
+main:has(.project-OpenTierBoy:hover) footer .technology.project-OpenTierBoy,
+main:has(.project-Levain:hover) footer .technology.project-Levain {
+  opacity: 1 !important;
+}
+
+main:has(.technology.project-OpenTierBoy:hover) footer .technology.project-OpenTierBoy,
+main:has(.technology.project-Levain:hover) footer .technology.project-Levain {
+  opacity: 0.5 !important;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.4;
+}
