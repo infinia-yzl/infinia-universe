@@ -62,7 +62,7 @@ function LinkPreview({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block text-sm w-full h-full max-w-md group"
+      className="block text-sm w-full h-full max-w-lg xs:max-w-full group"
     >
       <div
         className="
@@ -145,8 +145,8 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <main className="md:w-3/4 xl:w-1/2 p-4 pt-8 md:pt-16 dotted-grid max-w-5xl">
-        <div className="ml-6 mr-6">
+      <main className="md:w-3/4 xl:w-1/2 p-4 pt-8 md:pt-16 dotted-grid max-w-5xl mx-6">
+        <section id="about">
           <h2 className="text-xl mb-2 font-extralight">
             Hi, I&apos;m
             {' '}
@@ -188,80 +188,81 @@ export default function Home() {
               positive change.
             </p>
           </span>
+        </section>
+        <section
+          id="projects"
+          className="flex flex-col lg:flex-row will-change-auto link-preview-container my-4"
+        >
+          <article id="OpenTierBoy" className="link-preview-item flex-1">
+            <LinkPreview
+              title="OpenTierBoy (Founder)"
+              url="https://www.opentierboy.com"
+              description="An open-source, non-commercial project that allows users to easily create and share tier lists with a focus on privacy and simplicity."
+            />
+          </article>
+          <article id="Levain" className="link-preview-item flex-1">
+            <LinkPreview
+              title="Levain (Former Lead SWE)"
+              url="https://developer.levain.tech/"
+              description="An enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
+            />
+          </article>
+        </section>
+        <section id="connect" className="mt-4 text-center md:text-start">
+          <p className="font-extralight ">
+            Pleased to meet you.
+          </p>
           <div
-            className="flex flex-col lg:flex-row will-change-auto link-preview-container my-4"
+            className="flex space-x-6 mt-4 justify-center md:justify-start md:space-x-4 md:m-0 md:mt-4"
           >
-            <div className="link-preview-item flex-1">
-              <LinkPreview
-                title="OpenTierBoy (Founder)"
-                url="https://www.opentierboy.com"
-                description="An open-source, non-commercial project that allows users to easily create and share tier lists with a focus on privacy and simplicity."
-              />
-            </div>
-            <div className="link-preview-item flex-1">
-              <LinkPreview
-                title="Levain (Former Lead SWE)"
-                url="https://developer.levain.tech/"
-                description="An enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
-              />
-            </div>
+            <button type="button" aria-label="github">
+              <a
+                href="https://github.com/infinia-yzl"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="github"
+              >
+                <SiGithub className="text-3xl" />
+              </a>
+            </button>
+            <button type="button" aria-label="linkedin">
+              <a
+                href="https://www.linkedin.com/in/infinia/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="linkedin"
+              >
+                <SiLinkedin className="text-3xl" />
+              </a>
+            </button>
+            <button type="button" aria-label="email">
+              <a href="mailto:dev@infinia.space" aria-label="email">
+                <MdEmail className="text-3xl" />
+              </a>
+            </button>
           </div>
-          <div className="mt-4 text-center md:text-start">
-            <p className="font-extralight ">
-              Pleased to meet you.
-            </p>
-            <div
-              className="flex space-x-6 mt-4 justify-center md:justify-start md:space-x-4 md:m-0 md:mt-4"
-            >
-              <button type="button" aria-label="github">
-                <a
-                  href="https://github.com/infinia-yzl"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="github"
+        </section>
+        <footer
+          className="font-thin mt-8 pb-8 max-w-screen-md text-center md:text-start"
+        >
+          {TECHNOLOGIES.map((tech, index) => {
+            const fontSize = getTechnologiesFontSize(index);
+            const isDifferentSize = index > 0
+              && fontSize !== getTechnologiesFontSize(index - 1);
+            return (
+              <React.Fragment key={tech.name}>
+                {isDifferentSize ? <br /> : null}
+                {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
+                <span
+                  className={`${fontSize} inline-block `}
+                  style={{ color: 'rgb(var(--foreground-rgb))' }}
                 >
-                  <SiGithub className="text-3xl" />
-                </a>
-              </button>
-              <button type="button" aria-label="linkedin">
-                <a
-                  href="https://www.linkedin.com/in/infinia/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="linkedin"
-                >
-                  <SiLinkedin className="text-3xl" />
-                </a>
-              </button>
-              <button type="button" aria-label="email">
-                <a href="mailto:dev@infinia.space" aria-label="email">
-                  <MdEmail className="text-3xl" />
-                </a>
-              </button>
-            </div>
-          </div>
-          <footer
-            className="font-thin mt-8 pb-8 max-w-screen-md text-center md:text-start"
-          >
-            {TECHNOLOGIES.map((tech, index) => {
-              const fontSize = getTechnologiesFontSize(index);
-              const isDifferentSize = index > 0
-                && fontSize !== getTechnologiesFontSize(index - 1);
-              return (
-                <React.Fragment key={tech.name}>
-                  {isDifferentSize ? <br /> : null}
-                  {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
-                  <span
-                    className={`${fontSize} inline-block `}
-                    style={{ color: 'rgb(var(--foreground-rgb))' }}
-                  >
-                    {tech.name}
-                  </span>
-                </React.Fragment>
-              );
-            })}
-          </footer>
-        </div>
+                  {tech.name}
+                </span>
+              </React.Fragment>
+            );
+          })}
+        </footer>
       </main>
     </div>
   );
