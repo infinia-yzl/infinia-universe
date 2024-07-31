@@ -33,9 +33,6 @@ body {
     transparent,
     rgb(var(--background-end-rgb))
   ) rgb(var(--background-start-rgb));
-
-  /* Temporarily hide overflow, remove when adding parallax */
-  overflow: hidden;
 }
 
 @keyframes pulse {

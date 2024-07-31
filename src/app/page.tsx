@@ -107,9 +107,9 @@ export default function Home() {
   const getRotationAnimation = (index: number) => (index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite');
 
   return (
-    <div className="h-screen flex flex-col md:flex-row justify-center items-center">
-      <header className="relative md:w-1/2 ">
-        <h1 className="md:hidden">infinia.space</h1>
+    <div className="min-h-screen flex flex-col md:flex-row justify-center items-center">
+      <header className="relative md:w-1/2">
+        <h1 className="md:hidden pt-4 ">infinia.space</h1>
         <div className="hidden md:flex items-center justify-center">
           {/* Orbits */}
           {ORBIT_SIZES.map((size, index) => {
@@ -145,7 +145,7 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <main className="md:w-3/4 xl:w-1/2 p-4 pt-20 md:pt-16 dotted-grid max-w-5xl">
+      <main className="md:w-3/4 xl:w-1/2 p-4 pt-8 md:pt-16 dotted-grid max-w-5xl">
         <div className="ml-6 mr-6">
           <h2 className="text-xl mb-2 font-extralight">
             Hi, I&apos;m
