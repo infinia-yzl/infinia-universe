@@ -106,159 +106,163 @@ export default function Home() {
   // Function to determine the correct rotation animation based on index
   const getRotationAnimation = (index: number) => (index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite');
 
-  const staticOrbitSection = () => (
-    <div className="hidden md:flex md:w-1/2 relative items-center justify-center">
-      {/* Orbits */}
-      {ORBIT_SIZES.map((size, index) => {
-        const animationDelay = `${(PULSE_ANIMATION_DURATION / ORBIT_SIZES.length) * index * 0.1}s`;
-        const rotationAnimation = getRotationAnimation(index);
-        return (
-          <div
-            /* eslint-disable-next-line react/no-array-index-key */
-            key={`orbit-${index}`}
-            className="orbit absolute rounded-full border"
-            style={{
-              animation: `${PULSE_ANIMATION} ${animationDelay}, ${rotationAnimation}`,
-              width: `${size}vw`,
-              height: `${size}vw`,
-              maxWidth: `${(index + 1) * 13.5}vw`,
-              maxHeight: `${(index + 1) * 13.5}vw`,
-            }}
-          />
-        );
-      })}
-
-      {/* Sun or Galaxy Core */}
-      <div
-        className="z-10 rounded-full flex items-center justify-center"
-        style={{
-          width: `${CORE_SIZE_BASE}vw`,
-          height: `${CORE_SIZE_BASE}vw`,
-        }}
-      >
-        <h1 className="font-thin" style={{ fontSize: `${CORE_SIZE_BASE / 12}vw` }}>
-          infinia.space
-        </h1>
-      </div>
-    </div>
-  );
-
   return (
-    <main>
-      <div className="h-screen flex flex-col md:flex-row justify-center items-center">
-        {staticOrbitSection()}
-        <div className="md:w-3/4 xl:w-1/2 p-4 pt-20 md:pt-16 dotted-grid max-w-5xl">
-          <div className="ml-6 mr-6">
-            <h2 className="text-xl mb-2 font-extralight">
-              Hi, I&apos;m
-              {' '}
-              <span className="font-normal">Isaac</span>
-              .
-            </h2>
-            <span className="font-extralight space-y-1.5">
-              <p>
-                I specialize in
-                {' '}
-                <span className="font-normal">software engineering</span>
-                {' '}
-                and
-                {' '}
-                <span className="font-normal">web development</span>
-                {' '}
-                with recent
-                working experience
-                in the
-                {' '}
-                <span className="font-normal">blockchain</span>
-                {' '}
-                industry.
-              </p>
-              <p>
-                I seek to build
-                {' '}
-                <span className="font-normal">
-                  meaningful
-                </span>
-                {' '}
-                products and experiences.
-              </p>
-            </span>
-            <div
-              className="flex flex-col lg:flex-row will-change-auto link-preview-container my-4"
-            >
-              <div className="link-preview-item flex-1">
-                <LinkPreview
-                  title="OpenTierBoy (Founder)"
-                  url="https://www.opentierboy.com"
-                  description="An open-source, non-commercial project that allows users to easily create and share tier lists with a focus on privacy and simplicity."
-                />
-              </div>
-              <div className="link-preview-item flex-1">
-                <LinkPreview
-                  title="Levain (Former Lead SWE)"
-                  url="https://developer.levain.tech/"
-                  description="An enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
-                />
-              </div>
-            </div>
-            <div className="mt-4 text-center md:text-start">
-              <p className="font-extralight ">
-                Pleased to meet you.
-              </p>
+    <div className="h-screen flex flex-col md:flex-row justify-center items-center">
+      <header className="relative md:w-1/2 ">
+        <h1 className="md:hidden">infinia.space</h1>
+        <div className="hidden md:flex items-center justify-center">
+          {/* Orbits */}
+          {ORBIT_SIZES.map((size, index) => {
+            const animationDelay = `${(PULSE_ANIMATION_DURATION / ORBIT_SIZES.length) * index * 0.1}s`;
+            const rotationAnimation = getRotationAnimation(index);
+            return (
               <div
-                className="flex space-x-6 mt-4 justify-center md:justify-start md:space-x-4 md:m-0 md:mt-4"
-              >
-                <button type="button" aria-label="github">
-                  <a
-                    href="https://github.com/infinia-yzl"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="github"
-                  >
-                    <SiGithub className="text-3xl" />
-                  </a>
-                </button>
-                <button type="button" aria-label="linkedin">
-                  <a
-                    href="https://www.linkedin.com/in/infinia/"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="linkedin"
-                  >
-                    <SiLinkedin className="text-3xl" />
-                  </a>
-                </button>
-                <button type="button" aria-label="email">
-                  <a href="mailto:dev@infinia.space" aria-label="email">
-                    <MdEmail className="text-3xl" />
-                  </a>
-                </button>
-              </div>
-            </div>
-            <div
-              className="font-thin mt-8 pb-8 max-w-screen-md text-center md:text-start"
-            >
-              {TECHNOLOGIES.map((tech, index) => {
-                const fontSize = getTechnologiesFontSize(index);
-                const isDifferentSize = index > 0
-                  && fontSize !== getTechnologiesFontSize(index - 1);
-                return (
-                  <React.Fragment key={tech.name}>
-                    {isDifferentSize ? <br /> : null}
-                    {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
-                    <span
-                      className={`${fontSize} inline-block `}
-                      style={{ color: 'rgb(var(--foreground-rgb))' }}
-                    >
-                      {tech.name}
-                    </span>
-                  </React.Fragment>
-                );
-              })}
-            </div>
+                /* eslint-disable-next-line react/no-array-index-key */
+                key={`orbit-${index}`}
+                className="orbit absolute rounded-full border"
+                style={{
+                  animation: `${PULSE_ANIMATION} ${animationDelay}, ${rotationAnimation}`,
+                  width: `${size}vw`,
+                  height: `${size}vw`,
+                  maxWidth: `${(index + 1) * 13.5}vw`,
+                  maxHeight: `${(index + 1) * 13.5}vw`,
+                }}
+              />
+            );
+          })}
+
+          {/* Sun or Galaxy Core */}
+          <div
+            className="z-10 rounded-full flex items-center justify-center"
+            style={{
+              width: `${CORE_SIZE_BASE}vw`,
+              height: `${CORE_SIZE_BASE}vw`,
+            }}
+          >
+            <h1 className="font-thin" style={{ fontSize: `${CORE_SIZE_BASE / 12}vw` }}>
+              infinia.space
+            </h1>
           </div>
         </div>
-      </div>
-    </main>
+      </header>
+      <main className="md:w-3/4 xl:w-1/2 p-4 pt-20 md:pt-16 dotted-grid max-w-5xl">
+        <div className="ml-6 mr-6">
+          <h2 className="text-xl mb-2 font-extralight">
+            Hi, I&apos;m
+            {' '}
+            <span className="font-normal">Isaac</span>
+            .
+          </h2>
+          <span className="font-extralight space-y-2">
+            <p>
+              I specialize in
+              {' '}
+              <span className="font-normal">software engineering</span>
+              {' '}
+              and
+              {' '}
+              <span
+                className="font-normal"
+              >
+                web development
+              </span>
+              , with recent experience in
+              {' '}
+              <span
+                className="font-normal"
+              >
+                blockchain
+              </span>
+              {' '}
+              technologies.
+            </p>
+            <p>
+              I&apos;m dedicated to crafting
+              {' '}
+              <span className="font-normal">meaningful</span>
+              {' '}
+              digital solutions that
+              {' '}
+              <span className="font-normal">inspire</span>
+              {' '}
+              positive change.
+            </p>
+          </span>
+          <div
+            className="flex flex-col lg:flex-row will-change-auto link-preview-container my-4"
+          >
+            <div className="link-preview-item flex-1">
+              <LinkPreview
+                title="OpenTierBoy (Founder)"
+                url="https://www.opentierboy.com"
+                description="An open-source, non-commercial project that allows users to easily create and share tier lists with a focus on privacy and simplicity."
+              />
+            </div>
+            <div className="link-preview-item flex-1">
+              <LinkPreview
+                title="Levain (Former Lead SWE)"
+                url="https://developer.levain.tech/"
+                description="An enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
+              />
+            </div>
+          </div>
+          <div className="mt-4 text-center md:text-start">
+            <p className="font-extralight ">
+              Pleased to meet you.
+            </p>
+            <div
+              className="flex space-x-6 mt-4 justify-center md:justify-start md:space-x-4 md:m-0 md:mt-4"
+            >
+              <button type="button" aria-label="github">
+                <a
+                  href="https://github.com/infinia-yzl"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="github"
+                >
+                  <SiGithub className="text-3xl" />
+                </a>
+              </button>
+              <button type="button" aria-label="linkedin">
+                <a
+                  href="https://www.linkedin.com/in/infinia/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="linkedin"
+                >
+                  <SiLinkedin className="text-3xl" />
+                </a>
+              </button>
+              <button type="button" aria-label="email">
+                <a href="mailto:dev@infinia.space" aria-label="email">
+                  <MdEmail className="text-3xl" />
+                </a>
+              </button>
+            </div>
+          </div>
+          <footer
+            className="font-thin mt-8 pb-8 max-w-screen-md text-center md:text-start"
+          >
+            {TECHNOLOGIES.map((tech, index) => {
+              const fontSize = getTechnologiesFontSize(index);
+              const isDifferentSize = index > 0
+                && fontSize !== getTechnologiesFontSize(index - 1);
+              return (
+                <React.Fragment key={tech.name}>
+                  {isDifferentSize ? <br /> : null}
+                  {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
+                  <span
+                    className={`${fontSize} inline-block `}
+                    style={{ color: 'rgb(var(--foreground-rgb))' }}
+                  >
+                    {tech.name}
+                  </span>
+                </React.Fragment>
+              );
+            })}
+          </footer>
+        </div>
+      </main>
+    </div>
   );
 }
