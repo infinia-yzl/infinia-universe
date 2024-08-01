@@ -33,9 +33,6 @@ body {
     transparent,
     rgb(var(--background-end-rgb))
   ) rgb(var(--background-start-rgb));
-
-  /* Temporarily hide overflow, remove when adding parallax */
-  overflow: hidden;
 }
 
 @keyframes pulse {
@@ -91,6 +88,33 @@ body {
   }
 }
 
+/* Custom cursor styles */
+.cursor {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.cursor::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .dotted-grid {
   background: linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
   linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
@@ -107,4 +131,58 @@ body {
 .button:hover {
   background-color: var(--button-text);
   color: var(--button-bg);
+}
+
+.link-preview-container {
+  overflow: hidden;
+  height: 100%;
+}
+
+.link-preview-item {
+  flex: 1;
+  transition: flex-grow 0.1s ease-in-out, opacity 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.link-preview-item:hover {
+  opacity: 1;
+}
+
+.link-preview-container:hover .link-preview-item:not(:hover) {
+  opacity: 0.3;
+}
+
+.link-preview-content {
+  flex: 1; /* Make the content take up all available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute content evenly */
+}
+
+.technology {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0.5;
+}
+
+/* Highlight technologies when hovering over projects */
+main:has(.project-OpenTierBoy:hover) footer .technology.project-OpenTierBoy,
+main:has(.project-Levain:hover) footer .technology.project-Levain {
+  opacity: 1 !important;
+}
+
+main:has(.technology.project-OpenTierBoy:hover) footer .technology.project-OpenTierBoy,
+main:has(.technology.project-Levain:hover) footer .technology.project-Levain {
+  opacity: 0.5 !important;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.4;
 }
