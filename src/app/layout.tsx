@@ -21,20 +21,11 @@ export const metadata: Metadata = {
     siteName: 'infinia.space',
     title: 'Isaac | Software Engineer & Web Developer',
     description: 'Crafting meaningful digital solutions that inspire positive change.',
-    images: [
-      {
-        url: 'https://infinia.space/og-image.jpg', // Replace with your actual image URL
-        width: 1200,
-        height: 630,
-        alt: 'Isaac - Software Engineer & Web Developer',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Isaac | Software Engineer & Web Developer',
     description: 'Crafting meaningful digital solutions that inspire positive change.',
-    images: ['https://infinia.space/twitter-image.jpg'], // Replace with your actual image URL
     creator: '@InfiniaYZL',
   },
   robots: {
