@@ -3,6 +3,9 @@ import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { MdEmail } from 'react-icons/md';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import Link from 'next/link';
+import Image from 'next/image';
+import LOGO_LIGHT from '../../public/logo-white-sq.svg';
+import LOGO_DARK from '../../public/logo-black-sq.svg';
 
 const TECHNOLOGIES: { name: string; projects: string[] }[] = [
   {
@@ -174,7 +177,7 @@ function LinkPreview({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`block text-sm w-full h-full max-w-lg xs:max-w-full group project-${projectId}`}
+      className={`block text-sm w-full h-full xs:max-w-full 3xl:text-lg group project-${projectId}`}
     >
       <div
         className="
@@ -187,11 +190,11 @@ function LinkPreview({
       >
         <div>
           <h3
-            className="text-lg font-semibold line-clamp-2 pb-1 group-hover:underline underline-offset-2"
+            className="text-lg 3xl:text-2xl font-semibold line-clamp-2 pb-1 group-hover:underline underline-offset-2"
           >
             {title}
           </h3>
-          <p className="text-sm line-clamp-5 pt-1">
+          <p className="text-sm 3xl:text-lg line-clamp-5 pt-1">
             {description}
           </p>
         </div>
@@ -219,10 +222,14 @@ export default function Home() {
   const getRotationAnimation = (index: number) => (index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite');
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row justify-center items-center">
-      <header className="relative md:w-1/2">
-        <h1 className="md:hidden pt-4 ">infinia.space</h1>
-        <div className="hidden md:flex items-center justify-center">
+    <div className="min-h-screen flex flex-col lg:flex-row justify-center items-center">
+      <header className="relative lg:w-1/2">
+        <h1
+          className="lg:hidden pt-8 font-thin text-sm"
+        >
+          infinia.space
+        </h1>
+        <div className="hidden lg:flex items-center justify-center">
           {/* Orbits */}
           {ORBIT_SIZES.map((size, index) => {
             const animationDelay = `${(PULSE_ANIMATION_DURATION / ORBIT_SIZES.length) * index * 0.1}s`;
@@ -257,9 +264,11 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <main className="md:w-3/4 xl:w-1/2 p-4 pt-8 md:pt-16 dotted-grid max-w-5xl mx-6">
+      <main
+        className="md:w-3/4 xl:w-1/2 p-8 pt-8 lg:pt-20 lg:mt-4 dotted-grid max-w-screen-xl mx-6 3xl:text-2xl 3xl:space-y-8"
+      >
         <section id="about">
-          <h2 className="text-xl mb-2 font-extralight">
+          <h2 className="text-xl 3xl:text-3xl mb-2 font-extralight">
             Hi, I&apos;m
             {' '}
             <span className="font-normal">Isaac</span>
@@ -327,7 +336,7 @@ export default function Home() {
             Pleased to meet you.
           </p>
           <div
-            className="flex space-x-6 mt-4 justify-center md:justify-start md:space-x-4 md:m-0 md:mt-4"
+            className="flex space-x-6 mt-4 justify-center md:justify-start md:space-x-4 md:m-0 md:mt-4 3xl:space-x-5 3xl:py-2"
           >
             <button type="button" aria-label="github">
               <a
@@ -336,7 +345,7 @@ export default function Home() {
                 rel="noreferrer"
                 aria-label="github"
               >
-                <SiGithub className="text-3xl" />
+                <SiGithub className="text-3xl 3xl:text-5xl" />
               </a>
             </button>
             <button type="button" aria-label="linkedin">
@@ -346,18 +355,18 @@ export default function Home() {
                 rel="noreferrer"
                 aria-label="linkedin"
               >
-                <SiLinkedin className="text-3xl" />
+                <SiLinkedin className="text-3xl 3xl:text-5xl" />
               </a>
             </button>
             <button type="button" aria-label="email">
               <a href="mailto:dev@infinia.space" aria-label="email">
-                <MdEmail className="text-3xl" />
+                <MdEmail className="text-3xl 3xl:text-5xl" />
               </a>
             </button>
           </div>
         </section>
         <footer
-          className="relative font-thin pt-2 mt-8 pb-8 max-w-screen-md text-center md:text-start"
+          className="relative font-thin pt-2 mt-8 pb-8 max-w-screen-xl text-center md:text-start"
         >
           {TECHNOLOGIES.map((tech, index) => {
             const fontSize = getTechnologiesFontSize(index);
@@ -376,6 +385,22 @@ export default function Home() {
               </React.Fragment>
             );
           })}
+          <div className="flex justify-end items-end pt-2">
+            <Image
+              src={LOGO_DARK}
+              alt="infinia"
+              unoptimized
+              width={30}
+              className="dark:hidden"
+            />
+            <Image
+              src={LOGO_LIGHT}
+              alt="infinia"
+              unoptimized
+              width={30}
+              className="hidden dark:block"
+            />
+          </div>
         </footer>
       </main>
     </div>

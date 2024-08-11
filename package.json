@@ -11,10 +11,9 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
-    "@react-spring/web": "^9.7.3",
-    "next": "14.2.4",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "^14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-icons": "^4.11.0"
   },
   "devDependencies": {
@@ -25,10 +24,10 @@
     "eslint": "^8",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-config-next": "^14.2.5",
     "eslint-plugin-anti-trojan-source": "^1.1.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-config-next": "14.0.1",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
