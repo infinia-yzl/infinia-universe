@@ -4,6 +4,8 @@ import { MdEmail } from 'react-icons/md';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaGlobe } from 'react-icons/fa6';
+import { FaArchive } from 'react-icons/fa';
 import LOGO_LIGHT from '../../public/logo-white-sq.svg';
 import LOGO_DARK from '../../public/logo-black-sq.svg';
 
@@ -161,17 +163,22 @@ const getTechnologiesFontSize = (index: number) => {
   return 'text-xs'; // All remaining technologies
 };
 
+interface LinkPreviewProps {
+  title: string;
+  url: string;
+  description: string;
+  projectId: string;
+  // eslint-disable-next-line react/require-default-props
+  isOffline?: boolean;
+}
+
 function LinkPreview({
   title,
   url,
   description,
   projectId,
-}: {
-  title: string,
-  url: string,
-  description: string,
-  projectId: string,
-}) {
+  isOffline = false,
+}: LinkPreviewProps) {
   return (
     <Link
       href={url}
@@ -198,7 +205,12 @@ function LinkPreview({
             {description}
           </p>
         </div>
-        <div className="flex flex-row items-center space-x-1 mt-2">
+        <div className="flex flex-row items-center space-x-1.5 mt-2">
+          {isOffline ? (
+            <FaArchive />
+          ) : (
+            <FaGlobe />
+          )}
           <span>{new URL(url).hostname}</span>
           <HiOutlineExternalLink />
         </div>
@@ -325,9 +337,10 @@ export default function Home() {
           <article id="Levain" className="link-preview-item flex-1">
             <LinkPreview
               title="Levain (Former Lead SWE)"
-              url="https://developer.levain.tech/"
+              url="https://web.archive.org/web/20240831005317/https://developer.levain.tech/"
               description="An enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
               projectId="Levain"
+              isOffline
             />
           </article>
         </section>
