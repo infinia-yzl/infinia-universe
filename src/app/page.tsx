@@ -325,7 +325,7 @@ export default function Home() {
           <article id="Levain" className="link-preview-item flex-1">
             <LinkPreview
               title="Levain (Former Lead SWE)"
-              url="https://developer.levain.tech/"
+              url="https://web.archive.org/web/20240831005317/https://developer.levain.tech/"
               description="An enterprise-grade, self-custody wallet infrastructure with the mission to simplify the integration of blockchain technology into the foundation of every business."
               projectId="Levain"
             />
